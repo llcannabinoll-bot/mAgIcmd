@@ -94,3 +94,6 @@ Python не найден — Python not found
 ## Суть / Summary
 
 Вы формулируете задачу — система выполняет. — You describe the task — the system executes it.
+
+алгоритм по привилегиям - .bat поднимает себя сразу через UAC, и скрипт логирует факт получения прав администратора. MagickCMD.bat: добавлена проверка net session + вызов PowerShell Start-Process -Verb runAs для автоматического перезапуска с правами администратора (UAC).
+interpreter_bootstrap.py: после elevation скрипт записывает в magick_setup.log строку о получении админских прав и имени учётной записи, и выводит это в консоль.
