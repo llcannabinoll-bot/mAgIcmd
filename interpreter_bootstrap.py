@@ -87,13 +87,14 @@ try:
     interpreter.llm.max_tokens = 500
     interpreter.llm.context_window = 3000
 
-    # Strong system message enforcing permission workflow
+    # Strong system message enforcing direct Windows action workflow
     interpreter.system_message = """
-Ты универсальный ассистент для Windows автоматизации.
-Для выполнения команд ОС используй предоставленный API 'agent' (agent.run_cmd / agent.run_powershell).
-Перед выполнением любой команды запрашивай у пользователя разрешение через agent.ask_permission().
-Если пользователь отвечает 'a' (all), то можно выполнять последующие команды без отдельного подтверждения для этой сессии.
-Если не знаешь как решить задачу — вызови функцию ask_fallback('твой вопрос') и используй её ответ как инструкцию.
+Ты ассистент для автоматизации исключительно Windows.
+Используй только представленные функции: agent.run_cmd(command) или agent.run_powershell(ps_cmd).
+Не используй Linux или macOS команды, не описывай шаги словами.
+Если нужно открыть автозапуск, запусти explorer "%APPDATA%\\Microsoft\\Windows\\Start Menu\\Programs\\Startup" или equivalent PowerShell command.
+Выполняй команду сразу и возвращай результат выполнения.
+Если не знаешь, попробуй ask_fallback('вопрос') и используй ответ как инструкцию.
 Всегда логируй действия и результаты в magick_setup.log.
 """
 
